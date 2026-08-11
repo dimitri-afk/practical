@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+   <style>
+    body { font-family: Arial; margin: 30px; }
+    input, button { margin: 5px; padding: 8px; font-size: 16px; }
+    #result { margin-top: 20px; font-size: 18px; font-weight: bold; }
+  </style>
+</head>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+<body>
+
+<!-- navbar-->
+
+
+<nav class="navbar fixed-top bg-body-tertiary " data-bs-theme="dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" style="margin-left: 10px;" href="index.html">Back Home</a>
+  </div>
+</nav>
+
+
+<!-- navbar-->
+
+
+
+    <h2 style="margin-top: 70px;"> Kalkulator Bisnis</h2>
+
+  <!-- Input Modal -->
+  <label>Modal Awal (Rp): <input type="number" id="modal"></label><br>
+
+  <!-- Input Harga Jual -->
+  <label>Harga Jual (Rp): <input type="number" id="harga"></label><br>
+
+  <button onclick="hitungLaba()">Hitung Laba</button>
+
+  <button onclick="resetForm()">Reset</button>
+
+  <div id="result"></div>
+
+  <script>
+    function hitungLaba() {
+      const modal = parseFloat(document.getElementById("modal").value);
+      const harga = parseFloat(document.getElementById("harga").value);
+
+      if (isNaN(modal) || isNaN(harga)) {
+        document.getElementById("result").textContent = "Masukkan data dengan benar!";
+        return;
+      }
+
+      const laba = harga - modal;
+
+      document.getElementById("result").innerHTML = `
+         Perhitungan:<br>
+        - Modal Awal: Rp ${modal.toLocaleString()}<br>
+        - Harga Jual: Rp ${harga.toLocaleString()}<br>
+        - Laba: Rp ${laba.toLocaleString()}
+      `;
+    }
+  </script>
+<p style="opacity: -1;" class="fs-6">hys</p>
+
+<h2>Kalkulator Break Even Point (BEP)</h2>
+
+  <!-- BEP Unit -->
+  <h3 style="text-align: center;">BEP Unit</h3>
+  <label>harga jual unit: <input type="number" id="a1"></label><br>
+  <label>biaya variabel: <input type="number" id="b1"></label><br>
+  <label>biaya tetap: <input type="number" id="d1"></label><br>
+  <button onclick="bepUnit()">Hitung BEP Unit</button>
+  <button onclick="resetForm()">Reset</button>
+  <p class="result" id="hasilUnit"></p>
+
+  <!-- BEP Rupiah -->
+  <h3 style="text-align: center;">BEP Rupiah</h3>
+  <label>hasil HJU-BV: <input type="number" id="a2"></label><br>
+  <label>biaya variabel: <input type="number" id="b2"></label><br>
+  <label>biaya tetap: <input type="number" id="d2"></label><br>
+  <button onclick="bepRupiah()">Hitung BEP Rupiah</button>
+  <button onclick="resetForm()">Reset</button>
+  <p class="result" id="hasilRupiah"></p>
+
+  <!-- BEP Laba -->
+  <h3 style="text-align: center;">BEP Laba</h3>
+  <label>Biaya Tetap: <input type="number" id="a3"></label><br>
+  <label>Angka Kedua: <input type="number" id="b3"></label><br>
+  <label>Harga Jual Unit: <input type="number" id="f3"></label><br>
+  <label>Biaya Vaiabel: <input type="number" id="g3"></label><br>
+  <label>hasil BT/AK: <input type="number" id="d3"></label><br>
+  <label>Angka Keenam: <input type="number" id="i3"></label><br>
+  <button onclick="bepLaba()">Hitung BEP Laba</button>
+  <button onclick="resetForm()">Reset</button>
+  <p class="result" id="hasilLaba"></p>
+
+  <script>
+    // BEP Unit
+      function bepUnit() {
+      const a = parseInt(document.getElementById("a1").value);
+      const b = parseInt(document.getElementById("b1").value);
+      const d = document.getElementById("d1").value; // ambil tapi belum diparse
+
+      const c = a - b;
+
+      if (d === "" || isNaN(parseInt(d))) {
+        // kalau d belum diisi → tampilkan c
+        document.getElementById("hasilUnit").textContent = "Hasil  = " + c;
+      } else {
+        // kalau d sudah diisi → tampilkan e
+        const e = parseInt(d) / c;
+        document.getElementById("hasilUnit").textContent = "BEP Unit = " + e;
+      }
+    }
+
+    // BEP Rupiah
+function bepRupiah() {
+  const a = parseInt(document.getElementById("a2").value);
+  const b = parseInt(document.getElementById("b2").value);
+  const d = document.getElementById("d2").value;
+
+  const c = a / b;
+
+  if (d === "" || isNaN(parseInt(d))) {
+    // kalau d belum diisi → tampilkan c
+    document.getElementById("hasilRupiah").textContent = "Hasil C = " + c.toFixed(2);
+  } else {
+    // kalau d sudah diisi → tampilkan e
+    const e = parseInt(d) / c;
+    document.getElementById("hasilRupiah").textContent = "BEP Rupiah = Rp " + e.toFixed(2);
+  }
+}
+
+    // BEP Laba
+function bepLaba() {
+  const a = parseInt(document.getElementById("a3").value);
+  const b = parseInt(document.getElementById("b3").value);
+  const f = parseInt(document.getElementById("f3").value);
+  const g = parseInt(document.getElementById("g3").value);
+  const d = document.getElementById("d3").value;
+  const i = document.getElementById("i3").value;
+
+  const c = a + b;
+  const h = f - g;
+
+  if (d === "" || i === "" || isNaN(parseInt(d)) || isNaN(parseInt(i))) {
+    // kalau d/i belum diisi → tampilkan c dan h dulu
+    document.getElementById("hasilLaba").textContent = "Hasil C = " + c + ", Hasil H = " + h;
+  } else {
+    // kalau d dan i sudah diisi → tampilkan e
+    const e = c / h;
+    document.getElementById("hasilLaba").textContent = "BEP Laba = " + e;
+  }
+}
+
+// Reset semua input & hasil
+    function resetForm() {
+      const inputs = document.querySelectorAll("input");
+      inputs.forEach(input => input.value = "");
+      document.getElementById("hasilUnit").textContent = "";
+      document.getElementById("hasilRupiah").textContent = "";
+      document.getElementById("hasilLaba").textContent = "";
+    }
+  </script>
+
+
+
+
+
+</body>
+</html>

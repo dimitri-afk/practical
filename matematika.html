@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+ <style>
+    body { font-family: Arial; margin: 30px; }
+    input, button { margin: 5px; padding: 8px; font-size: 16px; }
+    .result { margin-top: 10px; font-weight: bold; }
+  </style>
+  </head>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+<body class="">
+
+<!-- navbar-->
+
+
+<nav class="navbar fixed-top bg-body-tertiary " data-bs-theme="dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" style="margin-left: 10px;" href="index.html">Back Home</a>
+  </div>
+</nav>
+
+
+<!-- navbar-->
+
+ <h2 class="fw-bold" style="text-align: center; margin-top: 70px;"> MATEMATIKA</h2>
+
+
+<div class=" " style="margin-top: 50px; margin-left: 8px;">
+
+ <h2 style="text-align: center;"> Kalkulator </h2>
+
+  <input type="number" id="num1" placeholder="Angka pertama">
+  <select id="operator">
+    <option value="+">+</option>
+    <option value="-">-</option>
+    <option value="*">×</option>
+    <option value="/">÷</option>
+  </select>
+  <input type="number" id="num2" placeholder="Angka kedua">
+  <button onclick="calculate()">Hitung</button>
+
+  <p id="result"></p>
+
+  <script>
+    function calculate() {
+      const num1 = parseFloat(document.getElementById("num1").value);
+      const num2 = parseFloat(document.getElementById("num2").value);
+      const operator = document.getElementById("operator").value;
+      let result;
+
+      if (isNaN(num1) || isNaN(num2)) {
+        result = "Masukkan angka yang valid!";
+      } else {
+        switch(operator) {
+          case "+": result = num1 + num2; break;
+          case "-": result = num1 - num2; break;
+          case "*": result = num1 * num2; break;
+          case "/": 
+            result = num2 !== 0 ? (num1 / num2) : "Tidak bisa dibagi 0!";
+            break;
+        }
+      }
+
+      document.getElementById("result").textContent = "Hasil: " + result;
+    }
+  </script>
+
+<p style="opacity: -1;" class="fs-6">hys</p>
+
+  
+
+  <!-- Luas Segitiga -->
+  <h3 style="text-align: center;">Luas Segitiga</h3>
+  <label>Alas: <input type="number" id="alas"></label>
+  <label>Tinggi: <input type="number" id="tinggi"></label>
+  <button onclick="hitungSegitiga()">Hitung</button>
+  <p id="hasilSegitiga"></p>
+ 
+<p style="opacity: -1;" class="fs-6">hys</p>
+
+  <!-- Keliling Lingkaran -->
+  <h3 style="text-align: center;">Keliling Lingkaran</h3>
+  <label>Jari-jari: <input type="number" id="jari"></label>
+  <button onclick="hitungLingkaran()">Hitung</button>
+  <p id="hasilLingkaran"></p>
+
+<p style="opacity: -1;" class="fs-6">hys</p>
+
+  <!-- Teorema Pythagoras -->
+  <h3 style="text-align: center;">Teorema Pythagoras</h3>
+  <label>Sisi a: <input type="number" id="a"></label>
+  <label>Sisi b: <input type="number" id="b"></label>
+  <button onclick="hitungPythagoras()">Hitung</button>
+  <p id="hasilPythagoras"></p>
+
+  <p style="opacity: -1;" class="fs-6">hys</p>
+
+<!-- Luas Persegi Panjang -->
+  <h3 style="text-align: center;">Luas Persegi Panjang</h3>
+  <label>Panjang: <input type="number" id="panjang"></label>
+  <label>Lebar: <input type="number" id="lebar"></label>
+  <button onclick="hitungPersegiPanjang()">Hitung</button>
+  <p id="hasilPersegiPanjang"></p>
+
+<p style="opacity: -1;" class="fs-6">hys</p>
+
+  <!-- Volume Balok -->
+  <h3 style="text-align: center;">Volume Balok</h3>
+  <label>Panjang: <input type="number" id="pBalok"></label>
+  <label>Lebar: <input type="number" id="lBalok"></label>
+  <label>Tinggi: <input type="number" id="tBalok"></label>
+  <button onclick="hitungBalok()">Hitung</button>
+  <p id="hasilBalok"></p>
+
+<p style="opacity: -1;" class="fs-6">hys</p>
+
+  <!-- Volume Tabung -->
+  <h3 style="text-align: center;">Volume Tabung</h3>
+  <label>Jari-jari: <input type="number" id="rTabung"></label>
+  <label>Tinggi: <input type="number" id="tTabung"></label>
+  <button onclick="hitungTabung()">Hitung</button>
+  <p id="hasilTabung"></p>
+
+
+
+  <script>
+    // Luas Segitiga = 1/2 * alas * tinggi
+    function hitungSegitiga() {
+      const alas = parseFloat(document.getElementById("alas").value);
+      const tinggi = parseFloat(document.getElementById("tinggi").value);
+      const luas = 0.5 * alas * tinggi;
+      document.getElementById("hasilSegitiga").textContent = "Luas segitiga = " + luas;
+    }
+
+    // Keliling Lingkaran = 2 * π * r
+    function hitungLingkaran() {
+      const r = parseFloat(document.getElementById("jari").value);
+      const keliling = 2 * Math.PI * r;
+      document.getElementById("hasilLingkaran").textContent = "Keliling lingkaran = " + keliling.toFixed(2);
+    }
+
+    // Teorema Pythagoras: c = √(a² + b²)
+    function hitungPythagoras() {
+      const a = parseFloat(document.getElementById("a").value);
+      const b = parseFloat(document.getElementById("b").value);
+      const c = Math.sqrt(a*a + b*b);
+      document.getElementById("hasilPythagoras").textContent = "Sisi miring (c) = " + c.toFixed(2);
+    }
+
+     // Luas Persegi Panjang = panjang * lebar
+    function hitungPersegiPanjang() {
+      const p = parseFloat(document.getElementById("panjang").value);
+      const l = parseFloat(document.getElementById("lebar").value);
+      const luas = p * l;
+      document.getElementById("hasilPersegiPanjang").textContent = "Luas persegi panjang = " + luas;
+    }
+
+    // Volume Balok = panjang * lebar * tinggi
+    function hitungBalok() {
+      const p = parseFloat(document.getElementById("pBalok").value);
+      const l = parseFloat(document.getElementById("lBalok").value);
+      const t = parseFloat(document.getElementById("tBalok").value);
+      const volume = p * l * t;
+      document.getElementById("hasilBalok").textContent = "Volume balok = " + volume;
+    }
+
+    // Volume Tabung = π * r² * t
+    function hitungTabung() {
+      const r = parseFloat(document.getElementById("rTabung").value);
+      const t = parseFloat(document.getElementById("tTabung").value);
+      const volume = Math.PI * r * r * t;
+      document.getElementById("hasilTabung").textContent = "Volume tabung = " + volume.toFixed(2);
+    }
+  </script>
+</div>
+
+
+
+
+    </body>
+    </html>

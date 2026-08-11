@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kalkulator Konversi Mata Uang</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+  <style>
+    body { font-family: Arial; text-align: center; margin-top: 50px; }
+    input, select, button { margin: 5px; padding: 10px; font-size: 16px; }
+    #result { font-size: 20px; font-weight: bold; margin-top: 20px; }
+  </style>
+</head>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+<body>
+
+
+
+
+<nav class="navbar fixed-top bg-body-tertiary " data-bs-theme="dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" style="margin-left: 10px;" href="index.html">Back Home</a>
+  </div>
+</nav>
+
+
+
+
+
+
+  <h2 style="margin-top: 70px;"> Konversi Mata Uang</h2>
+
+  <input type="number" id="amount" placeholder="Masukkan jumlah">
+  
+  <!-- Pilih arah konversi -->
+  <select id="direction">
+    <option value="toForeign">Rupiah → Mata Uang Asing</option>
+    <option value="toRupiah">Mata Uang Asing → Rupiah</option>
+  </select>
+
+  <!-- Pilih mata uang -->
+  <select id="currency">
+    <option value="usd">USD (Dolar Amerika)</option>
+    <option value="eur">EUR (Euro)</option>
+    <option value="jpy">JPY (Yen Jepang)</option>
+    <option value="gbp">GBP (Pound Inggris)</option>
+    <option value="sgd">SGD (Dolar Singapura)</option>
+  </select>
+
+  <button onclick="convertCurrency()">Konversi</button>
+
+  <p id="result"></p>
+
+  <script>
+    function convertCurrency() {
+      const amount = parseFloat(document.getElementById("amount").value);
+      const direction = document.getElementById("direction").value;
+      const currency = document.getElementById("currency").value;
+      let result;
+
+      // Kurs contoh (bisa diganti sesuai kurs terbaru)
+      const rates = {
+        usd: 0.000065, // 1 Rupiah ≈ 0.000065 USD
+        eur: 0.000060, // 1 Rupiah ≈ 0.000060 EUR
+        jpy: 0.0095,   // 1 Rupiah ≈ 0.0095 JPY
+        gbp: 0.000050, // 1 Rupiah ≈ 0.000050 GBP
+        sgd: 0.000088  // 1 Rupiah ≈ 0.000088 SGD
+      };
+
+      if (isNaN(amount) || amount <= 0) {
+        result = "Masukkan jumlah yang valid!";
+      } else {
+        if (direction === "toForeign") {
+          // Rupiah → Mata Uang Asing
+          const converted = amount * rates[currency];
+          result = amount + " IDR = " + converted.toFixed(2) + " " + currency.toUpperCase();
+        } else {
+          // Mata Uang Asing → Rupiah
+          const converted = amount / rates[currency];
+          result = amount + " " + currency.toUpperCase() + " = " + converted.toFixed(0) + " IDR";
+        }
+      }
+
+      document.getElementById("result").textContent = result;
+    }
+  </script>
+</body>
+</html>
