@@ -1,189 +1,381 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
+ <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
- <style>
-    body { font-family: Arial; margin: 30px; }
-    input, button { margin: 5px; padding: 8px; font-size: 16px; }
-    .result { margin-top: 10px; font-weight: bold; }
-  </style>
-  </head>
+  <title>Kalkulator Rumus Matematika</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
   integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 
-<body class="">
-
-<!-- navbar-->
-
-
-<nav class="navbar fixed-top bg-body-tertiary " data-bs-theme="dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" style="margin-left: 10px;" href="index.html">Back Home</a>
-  </div>
-</nav>
-
-
-<!-- navbar-->
-
- <h2 class="fw-bold" style="text-align: center; margin-top: 70px;"> MATEMATIKA</h2>
-
-
-<div class=" " style="margin-top: 50px; margin-left: 8px;">
-
- <h2 style="text-align: center;"> Kalkulator </h2>
-
-  <input type="number" id="num1" placeholder="Angka pertama">
-  <select id="operator">
-    <option value="+">+</option>
-    <option value="-">-</option>
-    <option value="*">×</option>
-    <option value="/">÷</option>
-  </select>
-  <input type="number" id="num2" placeholder="Angka kedua">
-  <button onclick="calculate()">Hitung</button>
-
-  <p id="result"></p>
-
-  <script>
-    function calculate() {
-      const num1 = parseFloat(document.getElementById("num1").value);
-      const num2 = parseFloat(document.getElementById("num2").value);
-      const operator = document.getElementById("operator").value;
-      let result;
-
-      if (isNaN(num1) || isNaN(num2)) {
-        result = "Masukkan angka yang valid!";
-      } else {
-        switch(operator) {
-          case "+": result = num1 + num2; break;
-          case "-": result = num1 - num2; break;
-          case "*": result = num1 * num2; break;
-          case "/": 
-            result = num2 !== 0 ? (num1 / num2) : "Tidak bisa dibagi 0!";
-            break;
-        }
-      }
-
-      document.getElementById("result").textContent = "Hasil: " + result;
-    }
-  </script>
-
-<p style="opacity: -1;" class="fs-6">hys</p>
-
+<body>
   
+   <style>
+    body { font-family: Arial; transition: background 0.5s, color 0.5s; }
+    .dark-mode { background: #121212; color: #f1f1f1; }
+    .result-box { transition: all 0.5s ease; }
+    .fade-in { animation: fadeIn 1s; }
+    @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
+  </style>
 
-  <!-- Luas Segitiga -->
-  <h3 style="text-align: center;">Luas Segitiga</h3>
-  <label>Alas: <input type="number" id="alas"></label>
-  <label>Tinggi: <input type="number" id="tinggi"></label>
-  <button onclick="hitungSegitiga()">Hitung</button>
-  <p id="hasilSegitiga"></p>
- 
-<p style="opacity: -1;" class="fs-6">hys</p>
+<div class="container mt-5 pt-5">
+  <div class="card shadow p-4">
+    <h2 class="fw-bold text-center mb-4">Kalkulator</h2>
 
-  <!-- Keliling Lingkaran -->
-  <h3 style="text-align: center;">Keliling Lingkaran</h3>
-  <label>Jari-jari: <input type="number" id="jari"></label>
-  <button onclick="hitungLingkaran()">Hitung</button>
-  <p id="hasilLingkaran"></p>
+    <div class="d-flex justify-content-center gap-2 mb-3">
+      <input type="number" class="form-control w-25" id="num1" placeholder="Angka pertama">
+      <select id="operator" class="form-select w-25">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">×</option>
+        <option value="/">÷</option>
+      </select>
+      <input type="number" class="form-control w-25" id="num2" placeholder="Angka kedua">
+      <button class="btn btn-primary" onclick="calculate()">Hitung</button>
+    </div>
 
-<p style="opacity: -1;" class="fs-6">hys</p>
-
-  <!-- Teorema Pythagoras -->
-  <h3 style="text-align: center;">Teorema Pythagoras</h3>
-  <label>Sisi a: <input type="number" id="a"></label>
-  <label>Sisi b: <input type="number" id="b"></label>
-  <button onclick="hitungPythagoras()">Hitung</button>
-  <p id="hasilPythagoras"></p>
-
-  <p style="opacity: -1;" class="fs-6">hys</p>
-
-<!-- Luas Persegi Panjang -->
-  <h3 style="text-align: center;">Luas Persegi Panjang</h3>
-  <label>Panjang: <input type="number" id="panjang"></label>
-  <label>Lebar: <input type="number" id="lebar"></label>
-  <button onclick="hitungPersegiPanjang()">Hitung</button>
-  <p id="hasilPersegiPanjang"></p>
-
-<p style="opacity: -1;" class="fs-6">hys</p>
-
-  <!-- Volume Balok -->
-  <h3 style="text-align: center;">Volume Balok</h3>
-  <label>Panjang: <input type="number" id="pBalok"></label>
-  <label>Lebar: <input type="number" id="lBalok"></label>
-  <label>Tinggi: <input type="number" id="tBalok"></label>
-  <button onclick="hitungBalok()">Hitung</button>
-  <p id="hasilBalok"></p>
-
-<p style="opacity: -1;" class="fs-6">hys</p>
-
-  <!-- Volume Tabung -->
-  <h3 style="text-align: center;">Volume Tabung</h3>
-  <label>Jari-jari: <input type="number" id="rTabung"></label>
-  <label>Tinggi: <input type="number" id="tTabung"></label>
-  <button onclick="hitungTabung()">Hitung</button>
-  <p id="hasilTabung"></p>
-
-
-
-  <script>
-    // Luas Segitiga = 1/2 * alas * tinggi
-    function hitungSegitiga() {
-      const alas = parseFloat(document.getElementById("alas").value);
-      const tinggi = parseFloat(document.getElementById("tinggi").value);
-      const luas = 0.5 * alas * tinggi;
-      document.getElementById("hasilSegitiga").textContent = "Luas segitiga = " + luas;
-    }
-
-    // Keliling Lingkaran = 2 * π * r
-    function hitungLingkaran() {
-      const r = parseFloat(document.getElementById("jari").value);
-      const keliling = 2 * Math.PI * r;
-      document.getElementById("hasilLingkaran").textContent = "Keliling lingkaran = " + keliling.toFixed(2);
-    }
-
-    // Teorema Pythagoras: c = √(a² + b²)
-    function hitungPythagoras() {
-      const a = parseFloat(document.getElementById("a").value);
-      const b = parseFloat(document.getElementById("b").value);
-      const c = Math.sqrt(a*a + b*b);
-      document.getElementById("hasilPythagoras").textContent = "Sisi miring (c) = " + c.toFixed(2);
-    }
-
-     // Luas Persegi Panjang = panjang * lebar
-    function hitungPersegiPanjang() {
-      const p = parseFloat(document.getElementById("panjang").value);
-      const l = parseFloat(document.getElementById("lebar").value);
-      const luas = p * l;
-      document.getElementById("hasilPersegiPanjang").textContent = "Luas persegi panjang = " + luas;
-    }
-
-    // Volume Balok = panjang * lebar * tinggi
-    function hitungBalok() {
-      const p = parseFloat(document.getElementById("pBalok").value);
-      const l = parseFloat(document.getElementById("lBalok").value);
-      const t = parseFloat(document.getElementById("tBalok").value);
-      const volume = p * l * t;
-      document.getElementById("hasilBalok").textContent = "Volume balok = " + volume;
-    }
-
-    // Volume Tabung = π * r² * t
-    function hitungTabung() {
-      const r = parseFloat(document.getElementById("rTabung").value);
-      const t = parseFloat(document.getElementById("tTabung").value);
-      const volume = Math.PI * r * r * t;
-      document.getElementById("hasilTabung").textContent = "Volume tabung = " + volume.toFixed(2);
-    }
-  </script>
+    <div id="result" class="result-box alert alert-info text-center"></div>
+  </div>
 </div>
 
 
+<script>
+  // Dark Mode Toggle
+  function toggleDarkMode() {
+    document.body.classList.toggle("dark-mode");
+  }
+
+  // Kalkulator
+  function calculate() {
+    const num1 = parseFloat(document.getElementById("num1").value);
+    const num2 = parseFloat(document.getElementById("num2").value);
+    const operator = document.getElementById("operator").value;
+    const hasilBox = document.getElementById("result");
+    let result;
+
+    if (isNaN(num1) || isNaN(num2)) {
+      result = "Masukkan angka yang valid!";
+    } else {
+      switch(operator) {
+        case "+": result = num1 + num2; break;
+        case "-": result = num1 - num2; break;
+        case "*": result = num1 * num2; break;
+        case "/": 
+          result = num2 !== 0 ? (num1 / num2) : "Tidak bisa dibagi 0!";
+          break;
+      }
+    }
+
+    hasilBox.textContent = "Hasil: " + result;
+    hasilBox.classList.remove("fade-in");
+    void hasilBox.offsetWidth; // reset animasi
+    hasilBox.classList.add("fade-in");
+  }
+</script>
+
+<nav class="navbar fixed-top bg-dark navbar-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="index.html">⬅ Back</a>
+    <button class="btn btn-outline-light" onclick="toggleDarkMode()">🌙 Mode</button>
+  </div>
+</nav>
+
+<div class="container mt-5 pt-5">
+  <h2 class="fw-bold text-center mb-4"> Rumus-Rumus Matematika</h2>
+
+  <div class="accordion" id="rumusAccordion">
+
+    <!-- Luas Segitiga -->
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#segitiga"> Luas Segitiga</button>
+      </h2>
+      <div id="segitiga" class="accordion-collapse collapse show">
+        <div class="accordion-body">
+          <input type="number" class="form-control mb-2" id="alas" placeholder="Alas">
+          <input type="number" class="form-control mb-2" id="tinggi" placeholder="Tinggi">
+          <button class="btn btn-primary" onclick="hitungSegitiga()">Hitung</button>
+          <div id="hasilSegitiga" class="result-box alert alert-info mt-3"></div>
+        </div>
+      </div>
+    </div>
+    
+
+    <!-- Keliling Lingkaran -->
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#lingkaran"> Keliling Lingkaran</button>
+      </h2>
+      <div id="lingkaran" class="accordion-collapse collapse">
+        <div class="accordion-body">
+          <input type="number" class="form-control mb-2" id="jari" placeholder="Jari-jari">
+          <button class="btn btn-success" onclick="hitungLingkaran()">Hitung</button>
+          <div id="hasilLingkaran" class="result-box alert alert-info mt-3"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Teorema Pythagoras -->
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#pythagoras"> Teorema Pythagoras</button>
+      </h2>
+      <div id="pythagoras" class="accordion-collapse collapse">
+        <div class="accordion-body">
+          <input type="number" class="form-control mb-2" id="a" placeholder="Sisi a">
+          <input type="number" class="form-control mb-2" id="b" placeholder="Sisi b">
+          <button class="btn btn-danger" onclick="hitungPythagoras()">Hitung</button>
+          <div id="hasilPythagoras" class="result-box alert alert-info mt-3"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Luas Persegi Panjang -->
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#persegiPanjang"> Luas Persegi Panjang</button>
+      </h2>
+      <div id="persegiPanjang" class="accordion-collapse collapse">
+        <div class="accordion-body">
+          <input type="number" class="form-control mb-2" id="panjang" placeholder="Panjang">
+          <input type="number" class="form-control mb-2" id="lebar" placeholder="Lebar">
+          <button class="btn btn-warning" onclick="hitungPersegiPanjang()">Hitung</button>
+          <div id="hasilPersegiPanjang" class="result-box alert alert-info mt-3"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Luas Persegi -->
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#persegi"> Luas Persegi</button>
+      </h2>
+      <div id="persegi" class="accordion-collapse collapse">
+        <div class="accordion-body">
+          <input type="number" class="form-control mb-2" id="sisi" placeholder="Sisi">
+          <button class="btn btn-secondary" onclick="hitungPersegi()">Hitung</button>
+          <div id="hasilPersegi" class="result-box alert alert-info mt-3"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Volume Balok -->
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#balok"> Volume Balok</button>
+      </h2>
+      <div id="balok" class="accordion-collapse collapse">
+        <div class="accordion-body">
+          <input type="number" class="form-control mb-2" id="pBalok" placeholder="Panjang">
+          <input type="number" class="form-control mb-2" id="lBalok" placeholder="Lebar">
+          <input type="number" class="form-control mb-2" id="tBalok" placeholder="Tinggi">
+          <button class="btn btn-info" onclick="hitungBalok()">Hitung</button>
+          <div id="hasilBalok" class="result-box alert alert-info mt-3"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Volume Tabung -->
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#tabung"> Volume Tabung</button>
+      </h2>
+      <div id="tabung" class="accordion-collapse collapse">
+        <div class="accordion-body">
+          <input type="number" class="form-control mb-2" id="rTabung" placeholder="Jari-jari">
+          <input type="number" class="form-control mb-2" id="tTabung" placeholder="Tinggi">
+          <button class="btn btn-dark" onclick="hitungTabung()">Hitung</button>
+          <div id="hasilTabung" class="result-box alert alert-info mt-3"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Luas Trapesium -->
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#trapesium"> Luas Trapesium</button>
+      </h2>
+      <div id="trapesium" class="accordion-collapse collapse">
+        <div class="accordion-body">
+          <input type="number" class="form-control mb-2" id="atas" placeholder="Sisi Atas (a)">
+          <input type="number" class="form-control mb-2" id="bawah" placeholder="Sisi Bawah (b)">
+          <input type="number" class="form-control mb-2" id="tinggiTrap" placeholder="Tinggi (t)">
+          <button class="btn btn-outline-primary" onclick="hitungTrapesium()">Hitung</button>
+          <div id="hasilTrapesium" class="result-box alert alert-info mt-3"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+  
+  <script>
+  // Dark Mode Toggle
+  function toggleDarkMode() {
+    document.body.classList.toggle("dark-mode");
+  }
+
+ // Luas Segitiga = ½ × alas × tinggi
+function hitungSegitiga() {
+  const alas = parseFloat(document.getElementById("alas").value);
+  const tinggi = parseFloat(document.getElementById("tinggi").value);
+  const hasilBox = document.getElementById("hasilSegitiga");
+
+  if (isNaN(alas) || isNaN(tinggi)) {
+    hasilBox.textContent = "Masukkan angka yang valid!";
+    return;
+  }
+
+  const luas = 0.5 * alas * tinggi;
+
+  // Menampilkan cara perhitungan + hasil
+  hasilBox.innerHTML = "Cara: ½ × " + alas + " × " + tinggi + "<br>" +
+                       "Luas Segitiga = " + luas;
+
+  hasilBox.classList.add("fade-in");
+}
+
+ // Keliling Lingkaran = 2 × π × r
+function hitungLingkaran() {
+  const r = parseFloat(document.getElementById("jari").value);
+  const hasilBox = document.getElementById("hasilLingkaran");
+
+  if (isNaN(r)) {
+    hasilBox.textContent = "Masukkan angka yang valid!";
+    return;
+  }
+
+  const keliling = 2 * Math.PI * r;
+
+  // Menampilkan cara perhitungan + hasil
+  hasilBox.innerHTML = "Cara: 2 × π × " + r + "<br>" +
+                       "Keliling Lingkaran = " + keliling.toFixed(2);
+
+  hasilBox.classList.add("fade-in");
+}
 
 
-    </body>
-    </html>
+  // Teorema Pythagoras: c = √(a² + b²)
+function hitungPythagoras() {
+  const a = parseFloat(document.getElementById("a").value);
+  const b = parseFloat(document.getElementById("b").value);
+  const hasilBox = document.getElementById("hasilPythagoras");
+
+  if (isNaN(a) || isNaN(b)) {
+    hasilBox.textContent = "Masukkan angka yang valid!";
+    return;
+  }
+
+  const c = Math.sqrt(a * a + b * b);
+
+  // Menampilkan cara perhitungan + hasil
+  hasilBox.innerHTML = "Cara: √(" + a + "² + " + b + "²)" + "<br>" +
+                       "Sisi miring (c) = " + c.toFixed(2);
+
+  hasilBox.classList.add("fade-in");
+}
+
+
+  // Luas Persegi Panjang = panjang × lebar
+function hitungPersegiPanjang() {
+  const p = parseFloat(document.getElementById("panjang").value);
+  const l = parseFloat(document.getElementById("lebar").value);
+  const hasilBox = document.getElementById("hasilPersegiPanjang");
+
+  if (isNaN(p) || isNaN(l)) {
+    hasilBox.textContent = "Masukkan angka yang valid!";
+    return;
+  }
+
+  const luas = p * l;
+
+  // Menampilkan cara perhitungan + hasil
+  hasilBox.innerHTML = "Cara: " + p + " × " + l + "<br>" +
+                       "Luas Persegi Panjang = " + luas;
+
+  hasilBox.classList.add("fade-in");
+}
+
+  // Luas Persegi = sisi × sisi
+  function hitungPersegi() {
+    const s = parseFloat(document.getElementById("sisi").value);
+    const hasilBox = document.getElementById("hasilPersegi");
+    if (isNaN(s)) {
+      hasilBox.textContent = "Masukkan angka yang valid!";
+      return;
+    }
+    const luas = s * s;
+    hasilBox.textContent = "Luas Persegi = " + luas;
+    hasilBox.classList.add("fade-in");
+  }
+
+ // Volume Balok = panjang × lebar × tinggi
+function hitungBalok() {
+  const p = parseFloat(document.getElementById("pBalok").value);
+  const l = parseFloat(document.getElementById("lBalok").value);
+  const t = parseFloat(document.getElementById("tBalok").value);
+  const hasilBox = document.getElementById("hasilBalok");
+
+  if (isNaN(p) || isNaN(l) || isNaN(t)) {
+    hasilBox.textContent = "Masukkan angka yang valid!";
+    return;
+  }
+
+  const volume = p * l * t;
+
+  // Menampilkan cara perhitungan + hasil
+  hasilBox.innerHTML = "Cara: " + p + " × " + l + " × " + t + "<br>" +
+                       "Volume Balok = " + volume;
+
+  hasilBox.classList.add("fade-in");
+}
+
+  // Volume Tabung = π × r² × t
+function hitungTabung() {
+  const r = parseFloat(document.getElementById("rTabung").value);
+  const t = parseFloat(document.getElementById("tTabung").value);
+  const hasilBox = document.getElementById("hasilTabung");
+
+  if (isNaN(r) || isNaN(t)) {
+    hasilBox.textContent = "Masukkan angka yang valid!";
+    return;
+  }
+
+  const volume = Math.PI * r * r * t;
+
+  // Menampilkan cara perhitungan + hasil
+  hasilBox.innerHTML = "Cara: π × " + r + "² × " + t + "<br>" +
+                       "Volume Tabung = " + volume.toFixed(2);
+
+  hasilBox.classList.add("fade-in");
+}
+
+
+ // Luas Trapesium = ½ × (a + b) × t
+function hitungTrapesium() {
+  const a = parseFloat(document.getElementById("atas").value);
+  const b = parseFloat(document.getElementById("bawah").value);
+  const t = parseFloat(document.getElementById("tinggiTrap").value);
+  const hasilBox = document.getElementById("hasilTrapesium");
+
+  if (isNaN(a) || isNaN(b) || isNaN(t)) {
+    hasilBox.textContent = "Masukkan angka yang valid!";
+    return;
+  }
+
+  const luas = 0.5 * (a + b) * t;
+
+  // Menampilkan cara perhitungan + hasil
+  hasilBox.innerHTML = "Cara: ½ × (" + a + " + " + b + ") × " + t + "<br>" +
+                       "Luas Trapesium = " + luas;
+
+  hasilBox.classList.add("fade-in");
+}
+
+</script>
+
+
+</body>
+</html>
