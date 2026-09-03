@@ -307,7 +307,11 @@ function hitungPersegiPanjang() {
       return;
     }
     const luas = s * s;
-    hasilBox.textContent = "Luas Persegi = " + luas;
+
+    //caranya
+    hasilBox.innerHTML = "cara: " + s + " x " + s + "<br>" + 
+                          "Luas Persegi = " + luas;
+
     hasilBox.classList.add("fade-in");
   }
 
